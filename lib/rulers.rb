@@ -9,7 +9,7 @@ module Rulers
       controller = class_ref.new env
       text = controller.send action
 
-      [200, {'Content-Type' => 'text/html'}, ["Hello foods!"]]
+      [200, {'Content-Type' => 'text/html'}, [text]]
     end
   end
 
