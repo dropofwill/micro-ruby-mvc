@@ -8,9 +8,7 @@ module Rulers
       class_ref, action = get_controller_and_action env
       controller = class_ref.new env
       text = controller.send action
-    rescue
-        text = "something went terribly wrong"
-    ensure
+    
       [200, {'Content-Type' => 'text/html'}, [text]]
     end
   end
