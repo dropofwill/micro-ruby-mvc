@@ -7,8 +7,13 @@ module Rulers
     def call env
       class_ref, action = get_controller_and_action env
       controller = class_ref.new env
-      text = controller.send action
-
+      
+      begin
+        text = controller.send action
+      rescue
+        text = "something went terribly wrong"
+      end
+      
       [200, {'Content-Type' => 'text/html'}, [text]]
     end
   end
