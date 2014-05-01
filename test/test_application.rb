@@ -14,7 +14,6 @@ class RulersAppTest < Test::Unit::TestCase
 		get "/"
 
 		assert last_response.ok?
-		body = last_response.body
-		assert body["Hello"]
+		assert last_response.body.include?('Hello')
 	end
 end

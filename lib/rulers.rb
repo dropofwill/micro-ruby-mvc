@@ -1,5 +1,5 @@
 require "rulers/version"
-require "rulers/RulersSupport"
+require "rulers/RulersSupport/RulersSupport"
 
 module Rulers
   class Application
