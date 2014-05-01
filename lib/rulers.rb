@@ -5,14 +5,12 @@ require "rulers/RulersSupport/RulersSupport"
 module Rulers
   class Application
     def call env
-      begin
-        class_ref, action = get_controller_and_action env
-        controller = class_ref.new env
-        text = controller.send action
-      rescue
+      class_ref, action = get_controller_and_action env
+      controller = class_ref.new env
+      text = controller.send action
+    rescue
         text = "something went terribly wrong"
-      end
-
+    ensure
       [200, {'Content-Type' => 'text/html'}, [text]]
     end
   end
