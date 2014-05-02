@@ -1,6 +1,7 @@
 require "rulers/version"
 require "rulers/routing"
-require "rulers/RulersSupport/RulersSupport"
+require "rulers/rulers_support"
+require "rulers/dependencies"
 
 module Rulers
   class Application

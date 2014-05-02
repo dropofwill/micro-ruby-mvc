@@ -10,7 +10,6 @@ Gem::Specification.new do |spec|
   spec.email         = ["wpaul@globalthinking.com"]
   spec.summary       = %q{Rulers a ruby micro web framework}
   spec.description   = %q{Rulers a ruby micro web framework, which uses Rack}
-  spec.homepage      = ""
   spec.license       = "GNU GPL"
 
   spec.files         = `git ls-files -z`.split("\x0")

@@ -16,4 +16,12 @@ class RulersAppTest < Test::Unit::TestCase
 		assert last_response.ok?
 		assert last_response.body.include?('Hello')
 	end
+
+	def test_array_support
+
+	end
+
+	def test_to_underscore
+		assert_equal "App/Controller", "App::Controller".to_underscore
+	end
 end
