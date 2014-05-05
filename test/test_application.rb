@@ -11,17 +11,20 @@ class RulersAppTest < Test::Unit::TestCase
 	end
 
 	def test_request
-		get "/"
-
-		assert last_response.ok?
-		assert last_response.body.include?('Hello')
+		# assert last_response.ok?
 	end
 
-	def test_array_support
-
+	def test_array_sum
+		assert_equal( 6, [1,2,2].sum(1))
 	end
 
 	def test_to_underscore
-		assert_equal "App/Controller", "App::Controller".to_underscore
+		assert_equal("app/controller", Rulers.to_underscore("App::Controller"))
+		assert_equal("app_controller", Rulers.to_underscore("APPController"))
+		assert_equal("app_controller", Rulers.to_underscore("app-controller"))
+	end
+
+	def test_to_class
+		assert_equal("AppController", Rulers.to_class("app_controller"))
 	end
 end

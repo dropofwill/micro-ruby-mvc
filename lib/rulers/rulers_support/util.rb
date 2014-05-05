@@ -16,4 +16,8 @@ module Rulers
 			# apP_coTroller -> app_controller
 			downcase
 	end
+
+	def self.to_class string
+		string.split('_').map {|token| token.slice(0).upcase + token.slice(1..-1) }.join
+	end
 end
