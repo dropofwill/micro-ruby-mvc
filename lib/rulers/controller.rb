@@ -1,5 +1,5 @@
 require "slim"
-require "tilt"
+# require "tilt"
 
 module Rulers
   class Controller
@@ -13,12 +13,7 @@ module Rulers
 
     def render view_name, locals = {}
       filename = File.join "app", "views", "#{view_name}.html.slim"
-      
-      puts File.expand_path filename
-      puts File.file? filename
-      puts Slim::Template.new(filename).render(env: env)
-      
-      Slim::Template.new(filename).render(env: env)
+      Slim::Template.new(filename).render(self, locals.merge(env: @env))
     end
   end
 end
