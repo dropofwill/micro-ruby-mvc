@@ -24,7 +24,7 @@ class RulersAppTest < Test::Unit::TestCase
 		assert_equal("app_controller", Rulers.to_underscore("app-controller"))
 	end
 
-	def test_to_class
+	def test_to_camel
 		assert_equal("AppController", Rulers.to_class("app_controller"))
 	end
 end

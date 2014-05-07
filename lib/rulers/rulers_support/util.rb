@@ -17,7 +17,7 @@ module Rulers
 			downcase
 	end
 
-	def self.to_class string
+	def self.to_camel string
 		string.split('_').map {|token| token.slice(0).upcase + token.slice(1..-1) }.join
 	end
 end
