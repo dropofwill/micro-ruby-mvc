@@ -18,11 +18,9 @@ module Rulers
       Slim::Template.new(filename).render(self, locals.merge(env: @env))
     end
 
-    private
-
     def get_module_name
       class_ref = self.class
-      class_ref = class_ref.to_s.gsub /Controller$/, ""
+      class_ref = class_ref.to_s.gsub  /Controller$/, ""
       Rulers.to_underscore class_ref
     end
   end

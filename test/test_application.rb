@@ -1,17 +1,16 @@
 require_relative "test_helper"
 
-class TestApp < Rulers::Application
-end
-
 class RulersAppTest < Test::Unit::TestCase
 	include Rack::Test::Methods
 
 	def app
-		TestApp.new
+		require_relative "test_app/config/application"
+		TestApp::Application.new
 	end
 
 	def test_request
-		# assert last_response.ok?
+		get "test/render"
+		assert last_response.ok?
 	end
 
 	def test_array_sum
@@ -25,6 +24,6 @@ class RulersAppTest < Test::Unit::TestCase
 	end
 
 	def test_to_camel
-		assert_equal("AppController", Rulers.to_class("app_controller"))
+		assert_equal("AppController", Rulers.to_camel("app_controller"))
 	end
 end
