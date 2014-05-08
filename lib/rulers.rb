@@ -3,6 +3,7 @@ require_relative "rulers/routing"
 require_relative "rulers/rulers_support"
 require_relative "rulers/dependencies"
 require_relative "rulers/controller"
+require_relative "rulers/file_model"
 
 module Rulers
   class Application

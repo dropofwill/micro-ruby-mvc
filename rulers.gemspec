@@ -24,4 +24,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency "rack", "~> 1.0"
   spec.add_runtime_dependency "slim", "~> 2"
+  spec.add_runtime_dependency "multi_json", "~> 1.10"
 end
