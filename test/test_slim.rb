@@ -1,4 +1,4 @@
-require_relative "test_helper"
+require_relative "helper_for_test"
 require "slim"
 
 class TestApp < Rulers::Application

@@ -6,7 +6,6 @@ module Rulers
 			controller = Rulers.to_camel controller		# "has" -> "Has"
 			controller += "Controller"								# "Has" -> "HasController"
 
-			puts controller
 			[Object.const_get(controller), action]
 		end
 	end

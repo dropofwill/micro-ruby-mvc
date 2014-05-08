@@ -1,4 +1,4 @@
-require_relative "test_helper"
+require_relative "helper_for_test"
 
 class RulersAppTest < Test::Unit::TestCase
 	include Rack::Test::Methods
@@ -9,7 +9,7 @@ class RulersAppTest < Test::Unit::TestCase
 	end
 
 	def test_request
-		get "test/render"
+		get "a_feature/index"
 		assert last_response.ok?
 	end
 
