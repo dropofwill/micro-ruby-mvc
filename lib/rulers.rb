@@ -8,6 +8,7 @@ module Rulers
   class Application
     def call env
       class_ref, action = get_controller_and_action env
+      puts class_ref, action
       controller = class_ref.new env
       text = controller.send action
 

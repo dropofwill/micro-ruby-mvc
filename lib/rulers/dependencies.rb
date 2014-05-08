@@ -1,19 +1,22 @@
 class Object
 	def self.const_missing const
-		return nil unless !@calling_const_missing
 
-		begin
+		if const.to_s.end_with? "Controller"
+			return nil unless !@calling_const_missing
+
 			@calling_const_missing = true
-			path = "#{const.to_s.gsub(/Controller$/, "").downcase}/#{Rulers.to_underscore const.to_s}"
+
+			path = 	"#{Rulers.to_underscore(const.to_s.gsub(/Controller$/, ""))}" <<
+							"/" <<
+							"#{Rulers.to_underscore const.to_s}"
 			require path
 			class_ref = Object.const_get const
-		rescue
-			super
+
+			@calling_const_missing = false
+
+			return class_ref
 		else
-			@calling_const_missing = false
-			return const_get(const)
-		ensure
-			@calling_const_missing = false
+			super
 		end
 	end
 end
