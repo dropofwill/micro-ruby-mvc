@@ -3,7 +3,21 @@ require "multi_json"
 module Rulers
 	module Model
 		class FileModel
+
+			class << self
+				def hello
+					puts "hello"
+				end
+
+				def all feature = "a_feature"
+					files = Dir["db/#{[feature]}_data/*.json"]
+					files.map { |f| FileModel.new f }
+				end
+			end
+
+
 			def initialize filename
+				puts "testing this works"
 				@filename = filename
 
 				base = File.split(filename)[-1]
@@ -21,24 +35,13 @@ module Rulers
 				@hadh[name.to_s] = value
 			end
 
-			def self.find id, feature = "a_feature"
-				FileModel.new("db/#{feature}_data/#{id}.json")
-			rescue
-				return nil
-			end
+			# def self.find id, feature = "a_feature"
+			# 	puts "db/#{feature}_data/#{id}.json"
+			# 	FileModel.new("db/#{feature}_data/#{id}.json")
+			# rescue
+			# 	return nil
+			# end
 
-			def self.find_all feature ="a_feature"
-				files = Dir["db/#{[feature]}_data/*.json"]
-
-				files.map do |file|
-					begin
-						FileModel.new file
-					rescue
-						nil
-					end
-				end
-			end
 		end
-
 	end
 end
