@@ -14,17 +14,18 @@ module Rulers
     end
 
     def render view_name, locals = {}
-      filename = File.join "app", "#{get_module_name}", "views", "#{view_name}.html.slim"
+      filename = File.join "app", "#{get_feature_name}", "views", "#{view_name}.html.slim"
+      puts filename
       Slim::Template.new(filename).render(self, locals.merge(get_ivars_hash))
     end
 
-    private
-
-    def get_module_name
+    def get_feature_name
       class_ref = self.class
       class_ref = class_ref.to_s.gsub(/Controller$/, "")
       Rulers.to_underscore class_ref
     end
+
+    private
 
     def get_ivars_hash
       ivars_hash = {}
