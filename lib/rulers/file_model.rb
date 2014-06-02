@@ -8,16 +8,16 @@ module Rulers
 			class << self
 				def all caller
 					feature = caller.get_feature_name
-
 					files = Dir["db/#{feature}_data/*.json"]
-					files.map { |f| FileModel.new f }
+					files.map do |file|
+						FileModel.new file
+					end
 				end
 
 				def find id, caller
 					feature = caller.get_feature_name
-
-					file = "db/#{feature}_data/#{id}.json"
-					FileModel.new(file)
+					file = get_filename_by_id id, feature
+					FileModel.new file
 				rescue
 					return nil
 				end
@@ -25,32 +25,33 @@ module Rulers
 				def create attrs, caller
 					feature = caller.get_feature_name
 					filename = get_next_filename(feature)
-
-					hash = {}
-					attrs.each do |k,v|
-						hash[k] = v
-					end
-
 					doc = MultiJson.dump attrs, pretty: true
 
-					File.open(filename, "w") do |f|
-						f.write doc
+					File.open(filename, "w") do |file|
+						file.write doc
 					end
 
 					FileModel.new filename
 				end
 
-				private
+				def save id, attrs, caller
+					feature = caller.get_feature_name
+				end
 
+				private
 				def get_next_filename feature
 					files = Dir["db/#{feature}_data/*.json"]
 					names = files.map { |f| f.split("/")[-1] }
 					highest = names.map { |b| b.to_i }.max
 					id = highest + 1
+					return "db/#{feature}_data/#{id}.json"
+				end
 
+				def get_filename_by_id id, feature
 					return "db/#{feature}_data/#{id}.json"
 				end
 			end
+
 
 
 			# Instance Methods

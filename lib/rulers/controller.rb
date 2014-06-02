@@ -15,7 +15,6 @@ module Rulers
 
     def render view_name, locals = {}
       filename = File.join "app", "#{get_feature_name}", "views", "#{view_name}.html.slim"
-      puts filename
       Slim::Template.new(filename).render(self, locals.merge(get_ivars_hash))
     end
 
